@@ -763,3 +763,45 @@ function init() {
   try { mountUI(); } catch {}
 }
 init();
+async function mountIntoExtensionsSettings() {
+  // 用 fetch 讀取 settings.html，然後塞進擴展設定頁
+  const rootId = "zkum-settings";
+  if (document.getElementById(rootId)) return;
+
+  // 你的 repo 名稱（資料夾名）= third-party/char-knowledge（通常 ST 會用 repo 名當資料夾）
+  // 如果你安裝後資料夾名不同，這行路徑要跟著改（看 Extensions 管理器裡顯示的 folder）
+  const htmlUrl = "/scripts/extensions/third-party/char-knowledge/settings.html";
+
+  let html = "";
+  try {
+    const res = await fetch(htmlUrl);
+    html = await res.text();
+  } catch (e) {
+    console.warn("[ZKUM] failed to load settings.html", e);
+    return;
+  }
+
+  // Extensions 設定頁的容器（不同版本 id 可能有差，但多數版本存在這類容器）
+  const container =
+    document.querySelector("#extensions_settings") ||
+    document.querySelector("#extensions_settings_container") ||
+    document.body;
+
+  const wrap = document.createElement("div");
+  wrap.innerHTML = html;
+
+  container.appendChild(wrap);
+
+  // 把面板顯示出來
+  const panel = wrap.querySelector("#zkum-settings");
+  if (panel) panel.style.display = "block";
+
+  // 綁按鈕：打開/關閉記事本（沿用你原本的 modal）
+  const openBtn = wrap.querySelector("#zkum-open-notebook");
+  const closeBtn = wrap.querySelector("#zkum-close-notebook");
+  if (openBtn) openBtn.onclick = () => toggleModal(true);
+  if (closeBtn) closeBtn.onclick = () => toggleModal(false);
+}
+
+// 在 init() 的 APP_READY 裡呼叫
+// eventSource.on(event_types.APP_READY, () => { ... })
