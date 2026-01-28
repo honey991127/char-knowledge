@@ -1,0 +1,108 @@
+#zkum-fab {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 9999;
+  border-radius: 999px;
+  padding: 10px 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+#zkum-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  display: none;
+  background: rgba(0,0,0,0.35);
+}
+
+#zkum-modal {
+  position: fixed;
+  right: 16px;
+  bottom: 64px;
+  width: min(520px, calc(100vw - 32px));
+  max-height: min(75vh, 760px);
+  z-index: 9999;
+  display: none;
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(30, 30, 34, 0.92);
+  border: 1px solid rgba(255,255,255,0.12);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+  color: inherit;
+}
+
+#zkum-modal .zkum-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 12px;
+  background: rgba(30, 30, 34, 0.92);
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+#zkum-modal .zkum-body {
+  padding: 10px 12px 12px;
+  overflow: auto;
+  max-height: calc(min(75vh, 760px) - 54px);
+}
+
+#zkum-modal .zkum-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+#zkum-modal .zkum-actions button {
+  border-radius: 999px;
+  padding: 8px 10px;
+  cursor: pointer;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: inherit;
+}
+
+#zkum-modal .zkum-actions button:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+#zkum-modal .zkum-row {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 8px;
+  padding: 10px 10px;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  background: rgba(30, 30, 34, 0.92);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+#zkum-modal .zkum-row textarea,
+#zkum-modal .zkum-row input,
+#zkum-modal .zkum-row select {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: inherit;
+}
+
+#zkum-modal .zkum-row textarea {
+  min-height: 54px;
+  resize: vertical;
+}
+
+#zkum-modal .zkum-small {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+#zkum-modal .zkum-danger {
+  border-color: rgba(255,120,120,0.35) !important;
+  background: rgba(255,120,120,0.12) !important;
+}
