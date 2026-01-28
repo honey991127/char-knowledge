@@ -1,17 +1,62 @@
-<div id="zkum-settings" class="zkum-settings-root" style="display:none;">
-  <h3>📝 Char Knowledge（記事本）</h3>
+<details id="zkum-settings-root" style="margin: 10px 0;">
+  <summary style="cursor:pointer; font-weight:700;">
+    📝 Char Knowledge（點開/收起）
+  </summary>
 
-  <p style="opacity:.85;line-height:1.4;">
-    這個面板只是一個「入口」：按下面按鈕會打開記事本視窗。<br>
-    （你也可以把記事本完全搬進這個面板，但先做入口最穩、最不容易壞。）
-  </p>
-
-  <div style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0;">
-    <button id="zkum-open-notebook" class="menu_button">打開記事本</button>
-    <button id="zkum-close-notebook" class="menu_button">關閉記事本</button>
+  <div style="margin-top:10px; opacity:.9; line-height:1.4;">
+    這裡是「主 Char 對使用者」的記事本。你可以直接新增/修改/刪除條目。
   </div>
 
-  <p style="opacity:.75;">
-    若你同時安裝 Amily2：這個插件不改 chat 記錄，衝突機率比較低。
-  </p>
-</div>
+  <div style="display:flex; gap:10px; flex-wrap:wrap; margin:10px 0;">
+    <button id="zkum-add" class="menu_button">＋新增</button>
+    <button id="zkum-export" class="menu_button">匯出 JSON</button>
+    <button id="zkum-import" class="menu_button">匯入 JSON</button>
+    <button id="zkum-clear" class="menu_button" style="border-color: rgba(255,120,120,.4);">
+      清空本聊天
+    </button>
+  </div>
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin:10px 0;">
+    <label style="font-size:12px; opacity:.85;">
+      <input type="checkbox" id="zkum-enabled"> 啟用（注入記憶）
+    </label>
+    <label style="font-size:12px; opacity:.85;">
+      <input type="checkbox" id="zkum-autoExtract"> 自動抽取（規則）
+    </label>
+  </div>
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin:10px 0;">
+    <label style="font-size:12px; opacity:.85;">
+      最大注入條目數
+      <input id="zkum-maxItems" type="number" min="1" max="50" style="width:100%;">
+    </label>
+    <label style="font-size:12px; opacity:.85;">
+      注入深度（Depth）
+      <input id="zkum-depth" type="number" min="0" max="20" style="width:100%;">
+    </label>
+  </div>
+
+  <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; margin:10px 0;">
+    <label style="font-size:12px; opacity:.85;">
+      只注入「相關」條目
+      <select id="zkum-relevance" style="width:100%;">
+        <option value="true">是（推薦）</option>
+        <option value="false">否（注入最新 N 條）</option>
+      </select>
+    </label>
+    <label style="font-size:12px; opacity:.85;">
+      群聊注入（不推薦）
+      <select id="zkum-injectInGroups" style="width:100%;">
+        <option value="false">關閉（推薦）</option>
+        <option value="true">開啟</option>
+      </select>
+    </label>
+  </div>
+
+  <div style="font-size:12px; opacity:.85; margin:10px 0;">
+    ownerCharId：<span id="zkum-owner"></span>　
+    目前角色可用：<span id="zkum-owner-ok"></span>
+  </div>
+
+  <div id="zkum-list"></div>
+</details>
